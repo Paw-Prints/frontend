@@ -1,15 +1,14 @@
 {
-  "name": "pawprints",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd": "^3.23.5",
     "axios": "^0.19.0",
-    "history": "^4.10.1",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.1.2",
-    "styled-components": "^4.4.0"
+    "react-scripts": "3.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -32,7 +31,17 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "prettier": "1.18.2"
-  }
+  "description": "Current live deploy available [here](optimistic-brattain-b3415e.netlify.com).",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paw-Prints/frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Paw-Prints/frontend/issues"
+  },
+  "homepage": "https://github.com/Paw-Prints/frontend#readme"
 }
