@@ -44,8 +44,8 @@ export default class HomePage extends Component {
                 breed: this.state.breed,
                  location: `${this.state.city + ', ' + this.state.state}`}
         }
-                console.log(body)
-        axios.post('https://paw-prints.herokuapp.com/api/',        body
+
+        axios.post('https://paw-prints.herokuapp.com/api/', body
         ).then(res=>{
                 console.log(res)
             })
