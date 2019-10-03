@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HomePageForm from "../Components /HomePageForm.js/HomePageForm";
+import HomePageForm from "../Components/HomePageForm/HomePageForm";
 // var request = require("request");
 var axios = require("axios");
 // const serverurl=`http://localhost:3001`
