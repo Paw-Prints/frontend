@@ -3,6 +3,8 @@ import { Layout, Menu, Breadcrumb, Icon, List, Avatar, Card } from 'antd';
 import { Button } from 'antd/lib/radio';
 import NavBar from "../NavBar/NavBar";
 import { token } from "../token"
+import styled from "styled-components";
+import headerImage from './../Images/Logo_Headers/dog-paw_orange_50x50.png'
 var axios = require("axios");
 const { Header, Content, Footer } = Layout;
 
@@ -21,63 +23,53 @@ export default class DisplaySearch extends Component {
         }
     }
     componentDidMount() {
-        // console.log("??????????",this.props.location.state.activeItem);
-        var options = {
-            method: 'POST',
-            // url: `${serverurl}/home`,
-            url: "https://paw-prints.herokuapp.com/api/",
-            // data: {location: this.props.location.state.activeItem.location, breed: this.props.location.state.activeItem.breed},
-            data: this.props.location.state.activeItem,
-            headers:
-                { Authorization: this.state.token }
-        };
-        axios(options)
-            .then(response => {
-                console.log("??????????", response.data)
-                const generalbreeddata = response.data.costs
-                const listingLink = response.data.pets.map(pet => {
-                    return (pet.listingLink)
-                });
-                const description = response.data.pets.map(pet => {
-                    return (pet.description)
-                });
-                const age = response.data.pets.map(pet => {
-                    return (pet.age)
-                });
-                const name = response.data.pets.map(pet => {
-                    return (pet.name)
-                });
-                // const attributes = response.data.pets.map(pet => {
-                //     return this.state.attributes.push(pet.attributes)
-                // });
-                const images = response.data.pets.map(pet => {
-                    return pet.images[0].medium
-                });
-                this.setState({
-                    generalbreeddata: generalbreeddata,
-                    listingLink: listingLink,
-                    description: description,
-                    age: age,
-                    name: name,
-                    // attributes: attributes,
-                    images: images
-                })
-            })
-            .catch(error => {
-                //   alert("hey you have an error"+error);
-                console.log(error);
-                // throw new Error(error);
-            });
+        console.log("??????????", this.props.location.state.responseObj);
+
+        const generalbreeddata = this.props.location.state.responseObj.costs
+        const listingLink = this.props.location.state.responseObj.pets.map(pet => {
+            return (pet.listingLink)
+        });
+        const description = this.props.location.state.responseObj.pets.map(pet => {
+            return (pet.description)
+        });
+        const age = this.props.location.state.responseObj.pets.map(pet => {
+            return (pet.age)
+        });
+        const name = this.props.location.state.responseObj.pets.map(pet => {
+            return (pet.name)
+        });
+        // const attributes = this.props.location.state.responseObj.pets.map(pet => {
+        //     return this.state.attributes.push(pet.attributes)
+        // });
+        const images = this.props.location.state.responseObj.pets.map(pet => {
+            return pet.images[0].medium
+        });
+        this.setState({
+            generalbreeddata: generalbreeddata,
+            listingLink: listingLink,
+            description: description,
+            age: age,
+            name: name,
+            // attributes: attributes,
+            images: images
+        })
+
     }
     goHome = (e) => {
         this.props.history.push("/home");
     }
+
+    handleClick=(e)=>{
+        console.log("heyyyyy");
+        console.log(e.target.name);
+    }
+    
     render() {
         console.log("blaahhhhhhhhh: ", this.state.images);
         const listData = [];
         for (let i = 0; i < 23; i++) {
             listData.push({
-                href: 'http://ant.design',
+                href: '#',
                 title: `${this.state.name[i]}, Age: ${this.state.age[i]}`,
                 description: `${this.state.description[i]}`,
                 content: `${this.state.listingLink[i]}`,
@@ -85,19 +77,40 @@ export default class DisplaySearch extends Component {
                 images: `${this.state.images[i]}`
             });
         }
+        const HeaderStyles = styled.div`
+    width: 100vw;
+    height: 60px;
+    background: #E04E00;
+    opacity: 1;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    .headers > h1{
+        margin: 0px 0px 0px 0px;
+    }
+    .pawHeader{
+        height: 35px;
+    }
+`
         return (
             <div className="container">
                 <div className="col">
                     <div className="row-md-2">
-                        <NavBar />
+                        <HeaderStyles className='headers'>
+                            <h1>Paw Print <span><img className='pawHeader' src={`${headerImage}`} /></span></h1>
+                        </HeaderStyles>
                     </div>
                     <div style={{ marginTop: "60px", position: 'fixed', zIndex: 1, width: '100%', backgroundColor: "rgba(255, 255, 255, 1)" }} className="row-md-2">
                         <div style={{ marginTop: "10px", height: "70px", lineHeight: "3px" }}>
-                            <p>The monthy cost of purchasing a {this.props.location.state.activeItem.breed} is {(this.state.generalbreeddata||{}).monthlyCost}</p>
+                            {/* <p>The monthy cost of purchasing a {this.props.location.state.activeItem.breed} is {(this.state.generalbreeddata||{}).monthlyCost}</p>
                             <p>The lifetime cost of purchasing a {this.props.location.state.activeItem.breed} is {(this.state.generalbreeddata||{}).lifetimeCost}</p>
                             <p>The expenditure to groom a {this.props.location.state.activeItem.breed} is {(this.state.generalbreeddata||{}).grooming}</p>
                             <p>The amount of money spent on food for a {this.props.location.state.activeItem.breed} is {(this.state.generalbreeddata||{}).food}</p>
-                            <p>The insurance amount of an average {this.props.location.state.activeItem.breed} is {(this.state.generalbreeddata||{}).insurance}</p>
+                            <p>The insurance amount of an average {this.props.location.state.activeItem.breed} is {(this.state.generalbreeddata||{}).insurance}</p> */}
                         </div>
                         <hr />
                     </div>
@@ -125,10 +138,10 @@ export default class DisplaySearch extends Component {
                                         }
                                     >
                                         <List.Item.Meta
-                                            title={<a href={item.href}>{item.title}</a>}
+                                            title={<a onClick={this.handleClick} value={item.name} href={item.href}>{item.title}</a>}
                                             description={item.description}
                                         />
-                                        {<a href={item.content}>{item.name}'s listingLink </a>}
+                                        {<a href={item.content} >{item.name}'s listingLink </a>}
                                     </List.Item>
                                 )}
                             />

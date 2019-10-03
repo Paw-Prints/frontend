@@ -17,7 +17,7 @@ export default class HomePage extends Component {
         super(props);
         this.state = {
             token: `${token}`,
-            zipcode: 0,
+            // zipcode: 0,
             breeds: [],
             activeItem: {},
         }

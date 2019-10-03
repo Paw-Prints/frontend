@@ -11,7 +11,8 @@ export default class HomePage extends Component {
             breed : '',
             location :  '',
             city: '',
-            state: ''
+            state: '',
+            responseObj:{}
         }
     }
 
@@ -48,6 +49,10 @@ export default class HomePage extends Component {
         axios.post('https://paw-prints.herokuapp.com/api/', body
         ).then(res=>{
                 console.log(res)
+                this.props.history.push({
+                      pathname: '/display',
+                      state: { responseObj: res.data }
+                    })
             })
             .catch(err=> { throw Error })
     }
