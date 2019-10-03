@@ -87,9 +87,9 @@ const AppStyles = styled.div`
     font-weight: bolder
    }
     .formFields{
-        padding: 20px 20px 0px 0px;
+        padding: 20px 0px 50px 0px;
         width:  500px;
-        height: 85vh;
+        height:100%;
         box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
         margin: 0 auto 60px auto;
     }
