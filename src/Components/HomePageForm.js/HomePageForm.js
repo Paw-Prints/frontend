@@ -131,7 +131,7 @@ const AppStyles = styled.div`
         
     }
     button:hover{
-        color: #ffffff;
+        color : #1a5e9e;
         background-color: #E04E00; 
         transition-duration: 1.2s
     }
