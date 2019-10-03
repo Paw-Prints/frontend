@@ -35,14 +35,17 @@ export default class HomePage extends Component {
         e.preventDefault();
         let body = {}
         if(this.state.location.length > 0){
-            
-                body = { location: this.state.location, breed: this.state.breed}
+                body = { 
+                    location: this.state.location,
+                     breed: this.state.breed
+                    }
             
         } else if (this.state.city.length > 0 ){
             body = {
-                 city: `${this.state.city + ', ' + this.state.state}`}
+                breed: this.state.breed,
+                 location: `${this.state.city + ', ' + this.state.state}`}
         }
-        console.log(body)
+                console.log(body)
         axios.post('https://paw-prints.herokuapp.com/api/',        body
         ).then(res=>{
                 console.log(res)

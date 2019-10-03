@@ -54,11 +54,7 @@ export default class HomePageForm extends Component {
             </div>
         )
     }
-}
-
-
-
-
+} 
 
 const AppStyles = styled.div`
     width: 100%;
