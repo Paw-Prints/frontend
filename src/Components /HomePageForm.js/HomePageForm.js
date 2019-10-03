@@ -4,33 +4,17 @@ import styled from 'styled-components';
 export default class HomePageForm extends Component {
     constructor (){
         super();
-        // this.state = {
-        //     breed : '',
-        //     location :  '',
-        // }
     }
 
-    // handleChange =( e) =>{
-    //     this.setState({
-    //         location : e.target.value
-    //     })
-    // }
-    // handleSelect = e =>{
-    //     this.setState({
-    //         breed: e.target.value
-    //     })
-    // } 
-    // handleSubmit = e =>{
-    //     console.log(e.target)
-    //     e.preventDefault();
-    //     console.log(this.state)
-    // }
     render() {
         return (
             <div>
                 <AppStyles>
                     <form onSubmit = {this.props.handleSubmit}>
-                        <select name='breed' value ={this.props.breed} onChange = {this.props.handleSelect}>
+                        <select 
+                            name='breed'
+                            value ={this.props.breed} 
+                            onChange = {this.props.handleSelect}>
                             <option value="Labrador Retriever">Choose A Breed</option>
 
                             <option value="Labrador Retriever">Labrador Retriever</option>
@@ -44,6 +28,18 @@ export default class HomePageForm extends Component {
                             <option value="Yorkshire Terrier">Yorkshire Terrier</option>
                             <option value="Pembroke Welsh Corgi">Pembroke Welsh Corgi</option>
                         </select>
+                        <div className="city">
+                            <input 
+                                type="text" 
+                                name="city"  
+                                value={this.props.city} 
+                                placeholder='City' 
+                                onChange= {this.props.handleChange} />
+                                <StateOptions
+                                    handleCityState = {this.props.handleCityState}
+                                 />
+                        </div>
+                        <h3>Or</h3>
                         <input 
                             type="text"
                             name = 'location'  
@@ -60,23 +56,27 @@ export default class HomePageForm extends Component {
     }
 }
 
+
+
+
+
 const AppStyles = styled.div`
     width: 100%;
     display: flex;
     height: 100vh;
     align-content: center;
     align-items: center;
-
-  form{
-    display: flex;
-    flex-direction : column;
-    align-content: center;
-    align-items: center;
-    padding: 200px 20px 0px 0px;
-    width:  500px;
-    height: 500px;
-    box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
-    margin: 0 auto;
+    
+    form{
+        display: flex;
+        flex-direction : column;
+        align-content: center;
+        align-items: center;
+        padding: 200px 20px 0px 0px;
+        width:  500px;
+        height: 500px;
+        box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+        margin: 0 auto;
     }
     input,select {
         width: 70%;
@@ -103,6 +103,81 @@ const AppStyles = styled.div`
         border-radius: 5px;
         padding: 10px 25px;
         font-size: 1.3rem;
-
+        
     }
-`;
+    h3{
+        margin: 5px;
+    }
+    .city{
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    .city > input, .city > select{
+        width: 45%;
+    }
+    `;
+
+function StateOptions(props) {
+    return (
+        <>
+        <select className='stateSelect' 
+            name = 'state'
+            value ={props.state}
+            onChange ={props.handleCityState}
+            >
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+        </select>	
+        </>
+    )
+}
