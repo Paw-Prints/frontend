@@ -18,7 +18,6 @@ export default class HomePage extends Component {
     componentDidMount() {
         
     }
-
     handleChange =(e) =>{
         const { target: { name, value } } = e;
         this.setState({ [name]: value })
