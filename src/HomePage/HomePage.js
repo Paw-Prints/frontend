@@ -8,43 +8,61 @@ export default class HomePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            token: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFmNGI1MTFmNDQwYTYxNTNjODlhYmE1N2MxOTA1MzliYmUyNTZmZjc0ODc2MTJhN2MwYmZmNDk3NTUwOTU5YzQxODBjOTBhZGY1ZmI3YmE3In0.eyJhdWQiOiJ3eFJwRkw0dGQxbW0xcjFLN1djT0F0OWx1M05uVzVZOVRPR2RBN0VxZHUyQTF2VVkzdCIsImp0aSI6ImFmNGI1MTFmNDQwYTYxNTNjODlhYmE1N2MxOTA1MzliYmUyNTZmZjc0ODc2MTJhN2MwYmZmNDk3NTUwOTU5YzQxODBjOTBhZGY1ZmI3YmE3IiwiaWF0IjoxNTcwMDQ1OTY2LCJuYmYiOjE1NzAwNDU5NjYsImV4cCI6MTU3MDA0OTU2Niwic3ViIjoiIiwic2NvcGVzIjpbXX0.S4KLrm8kFo37gaE1jHh5GY4xjdbN9c3x_vn_WAztbXdVDfkIX_7ZA0XwSFcb7v2-x5eAfb5l8UE_1n297g77DVFDvEMWfMmpAOCq1JF6NKqmHEcM265EM5mm8-_sHYeGhN7ZT2aBAzm29j7ttFJI6SXX4FlCIsmkgfgCWktIVPWG8YrNv-XM5e1VUYXCu-BXrgD4fGRP4OkGYjVjSAGx8nrJIbIfKco9p1emSPg1KmZse8cYWDlrT4lsitfM3llpkccSgl3KfXt5wWbRM1Ngpi0x3wZKnYh8E7abFLRosYiiqEUXv-iEL-jGGKHt3Aj64WzUBdSY2rKnY9bDDviZSQ",
             breed : '',
             location :  '',
-
+            city: '',
+            state: ''
         }
     }
 
     componentDidMount() {
         
     }
-
-    handleChange =( e) =>{
-        this.setState({
-            location : e.target.value
-        })
+    handleChange =(e) =>{
+        const { target: { name, value } } = e;
+        this.setState({ [name]: value })
     }
     handleSelect = e =>{
-        this.setState({
-            breed: e.target.value
-        })
+        e.preventDefault()
+        this.setState({ breed: e.target.value })
     } 
+    handleCityState = e => {
+        e.preventDefault()
+        this.setState({ state: e.target.value })
+    }
     handleSubmit = e =>{
-        console.log(e.target)
         e.preventDefault();
-        console.log(this.state)
+        let body = {}
+        if(this.state.location.length > 0){
+                body = { 
+                    location: this.state.location,
+                     breed: this.state.breed
+                    }
+            
+        } else if (this.state.city.length > 0 ){
+            body = {
+                breed: this.state.breed,
+                 location: `${this.state.city + ', ' + this.state.state}`}
+        }
+                console.log(body)
+        axios.post('https://paw-prints.herokuapp.com/api/',        body
+        ).then(res=>{
+                console.log(res)
+            })
+            .catch(err=> { throw Error })
     }
     render() {
         return (
             <div>
                 <HomePageForm 
                     breed = { this.state.breed }
+                    city = {this.state.city}
                     location = { this.state.location}
                     handleChange = { this.handleChange }
                     handleSelect = { this.handleSelect }
                     handleSubmit = { this.handleSubmit }
+                    handleCityState = {this.handleCityState }
                 />
-                <button onClick={this.onButtonCLick}>please click</button>
             </div>
         )
     }
