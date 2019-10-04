@@ -38,6 +38,7 @@ const HeaderStyles = styled.div`
   align-content: center;
   align-items: center;
   justify-content: center;
+  min-width: 400px;
 
   .headers > h1 {
     margin: 0px 0px 0px 0px;
@@ -48,6 +49,6 @@ const HeaderStyles = styled.div`
     padding-bottom: 8px;
   }
   h1 {
-      margin-top: 5%;
+      margin-top: 8%;
   }
 `;

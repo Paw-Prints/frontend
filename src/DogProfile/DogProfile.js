@@ -4,59 +4,160 @@ import declawed from "../Images/Attributes/declawed.png";
 import houseTrained from "../Images/Attributes/houseTrained.png";
 import vaccinated from "../Images/Attributes/vaccination-color.png";
 import neutered from "../Images/Attributes/neutered.png";
-import speicalNeeds from "../Images/Attributes/special_need_color.png";
+import specialNeeds from "../Images/Attributes/special_need_color.png";
+import styled from 'styled-components';
+import { Popover, Button } from 'antd';
+import CostTabs from '../costTabs/CostTabs';
+
 
 class DogProfile extends React.Component {
-  state = {};
+  state = { contactVisible: false, infoVisible: false };
+
+  showContactModal = () => {
+    this.setState({
+      contactVisible: true,
+    });
+  };
+
+  showInfoModal = () => {
+    this.setState({
+      infoVisible: true,
+    });
+  };
+
+  handleOk = e => {
+    this.setState({
+      contactVisible: false,
+      infoVisible: false
+    });
+  };
+
+  handleCancel = e => {
+    this.setState({
+      contactVisible: false,
+      infoVisible: false
+    });
+  };
 
   render() {
     const { pet, generalbreeddata } = this.props.location.state;
-    const { images, name, description, breeds, attributes, contact, age } = pet;
-    console.log(pet, generalbreeddata);
+    const { images, name, description, breeds, attributes, contact, age, listingLink } = pet;
+    const subject = `Is ${name} available to adopt?`
+    const body = `Hello! \n I am interested in possibly adopting ${name}, your available ${breeds.primary} listed on Petfinder. \n Do you have any more information about next steps? \n Thank you!`
+
+    console.log(pet)
 
     return (
       <div>
         <Header />
-        <div>
-          <img src={images[0].medium} alt="dog" />
-          <h1>{name}</h1>
-          <p>{description}</p>
+
+        <div
+          style={{ margin: "auto", width: "70%", minWidth: "400px", display: "flex", marginTop: "60px", maxHeight: "50vh", justifyContent: "center", paddingTop: "5%", marginBottom: "6%" }}
+        >
+
+          <PetCard>
+            <img src={images[0].medium} alt="dog" style={{ height: "30vh", width: "auto"}} />
+
+            <CardText style={{marginTop: "-2%"}}>
+              <h1>{name}</h1>
+
+              <p style={{ textAlign: "left" }}><b>Description:</b> {description}</p>
+              <p><b>Age:</b> {age}</p>
+              <p><b>Breed:</b> {breeds.primary} </p>
+
+
+            <div style={{ marginTop: "5%", display: "flex" }}>
+              {attributes.spayed_neutered ? (
+                <div> 
+                  <Popover placement="topLeft" content={<p>Spayed/Neutered</p>} arrowPointAtCenter>
+                    <img src={neutered} style={{ height: "6vh", width: "auto", marginRight: "10px"  }} alt="neutered" />
+                  </Popover>
+                </div>
+              ) : null}
+
+              {attributes.declawed ? (
+                <div> 
+                  <Popover placement="topLeft" content={<p>De-clawed</p>} arrowPointAtCenter>
+                    <img src={declawed} style={{ height: "6vh", width: "auto", marginRight: "10px"  }} alt="declawed" />
+                  </Popover>
+                </div>
+              ) : null}
+
+              {attributes.house_trained ? (
+                <div> 
+                  <Popover placement="topLeft" content={<p>House Trained</p>} arrowPointAtCenter>
+                    <img src={houseTrained} style={{ height: "6vh", width: "auto", marginRight: "10px"  }} alt="house trained" />
+                  </Popover>
+                </div>
+              ) : null}
+
+              {attributes.shots_current ? (
+                <div> 
+                  <Popover placement="topLeft" content={<p>Vaccinated</p>} arrowPointAtCenter>
+                    <img src={vaccinated} style={{ height: "6vh", width: "auto", marginRight: "10px"  }} alt="vaccinated" />
+                  </Popover>
+                </div>
+              ) : null}
+
+              {attributes.special_needs ? (
+                <div> 
+                  <Popover placement="topLeft" content={<p>Special Needs</p>} arrowPointAtCenter>
+                    <img src={specialNeeds} style={{ height: "6vh", width: "auto" }} alt="special needs" />
+                  </Popover>
+                </div>
+              ) : null}
+            </div>
+
+          </CardText>
+
+          </PetCard>
+
         </div>
-        <div>
-          {attributes.declawed ? (
-            <div>
-              <img src={declawed} alt="declawed" />
-              <p>Declawed</p>
-            </div>
-          ) : null}
-          {attributes.house_trained ? (
-            <div>
-              <img src={houseTrained} alt="houseTrained" />
-              <p>House Trained</p>
-            </div>
-          ) : null}
-          {attributes.shots_current ? (
-            <div>
-              <img src={vaccinated} alt="vaccinated" />
-              <p>Vaccinated</p>
-            </div>
-          ) : null}
-          {attributes.spayed_neutered ? (
-            <div>
-              <img src={neutered} alt="neutered" />
-              <p>Neutered</p>
-            </div>
-          ) : null}
-          {attributes.special_needs ? (
-            <div>
-              <img src={speicalNeeds} alt="special needs" />
-              <p>Special Needs</p>
-            </div>
-          ) : null}
-        </div>
+
+        <CostTabs props={generalbreeddata} age={age} />
+
+        <ButtonBox>          
+          <Button href={`${listingLink}`} target="_blank">See {name}'s PetFinder Listing</Button>
+          <Button type="primary" href={`mailto:${contact.email}?subject=${subject}&body=${body}`} target="_blank">
+            Email Shelter to Adopt
+          </Button>
+        </ButtonBox>
+
       </div>
     );
   }
+};
+
+const PetCard = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  width: 100%;
+`;
+
+const CardText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  width: 50%;
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  margin-top: 3%;
+  justify-items: center;
+  margin-bottom: 4%;
+  width: 50%;
+  margin: auto;
+  justify-content: space-evenly;
+
+  @media (max-width: 780px) {
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+    height: 20vh;
+    min-width: 400px;
 }
+`;
 
 export default DogProfile;
