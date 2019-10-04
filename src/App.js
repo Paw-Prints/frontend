@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import HomePage from './HomePage/HomePage';
 import NavBar from './NavBar/NavBar';
 import DisplaySearch from './DisplaySearch/DisplaySearch';
+import DogProfile from './DogProfile/DogProfile';
 
 function App() {
 
@@ -13,8 +14,10 @@ function App() {
       <Router>
         <Switch>
           <Route path="/home" component={HomePage} />
+          <Route path="/display/:dogid" component={DogProfile}/>
           <Route path="/display" component={DisplaySearch} />
           <Route path="/" component={NavBar} />
+          
         </Switch>
       </Router>
     </div>
