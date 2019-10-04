@@ -18,16 +18,24 @@ class DogProfile extends React.Component {
       <div>
         <Header />
         <div>
-          <img src={images[0].medium} />
+          <img src={images[0].medium} alt="dog" />
           <h1>{name}</h1>
           <p>{description}</p>
         </div>
         <div>
-          {attributes.declawed ? <img src={declawed} /> : null}
-          {attributes.house_trained ? <img src={houseTrained} /> : null}
-          {attributes.shots_current ? <img src={vaccinated} /> : null}
-          {attributes.spayed_neutered ? <img src={neutered} /> : null}
-          {attributes.special_needs ? <img src={speicalNeeds} /> : null}
+          {attributes.declawed ? <img src={declawed} alt="declawed" /> : null}
+          {attributes.house_trained ? (
+            <img src={houseTrained} alt="houseTrained" />
+          ) : null}
+          {attributes.shots_current ? (
+            <img src={vaccinated} alt="vaccinated" />
+          ) : null}
+          {attributes.spayed_neutered ? (
+            <img src={neutered} alt="neutered" />
+          ) : null}
+          {attributes.special_needs ? (
+            <img src={speicalNeeds} alt="special needs" />
+          ) : null}
         </div>
       </div>
     );

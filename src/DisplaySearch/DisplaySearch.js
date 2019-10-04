@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { Layout, Menu, Breadcrumb, Icon, List, Avatar, Card } from "antd";
+import { List } from "antd";
 import { Link } from "react-router-dom";
-import { Button } from "antd/lib/radio";
 import styled from "styled-components";
 import headerImage from "./../Images/Logo_Headers/dog-paw_orange_50x50.png";
-const { Header, Content, Footer } = Layout;
 
 export default class DisplaySearch extends Component {
   constructor(props) {
@@ -51,7 +49,11 @@ export default class DisplaySearch extends Component {
               <h1>
                 Paw Print{" "}
                 <span>
-                  <img className="pawHeader" src={`${headerImage}`} />
+                  <img
+                    alt="paw print"
+                    className="pawHeader"
+                    src={`${headerImage}`}
+                  />
                 </span>
               </h1>
             </HeaderStyles>
