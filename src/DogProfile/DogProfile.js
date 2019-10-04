@@ -6,18 +6,48 @@ import vaccinated from "../Images/Attributes/vaccination-color.png";
 import neutered from "../Images/Attributes/neutered.png";
 import specialNeeds from "../Images/Attributes/special_need_color.png";
 import styled from 'styled-components';
-import { Card, Popover } from 'antd';
+import { Popover, Modal, Button, Icon } from 'antd';
 import CostTabs from '../costTabs/CostTabs';
 
-const { Meta } = Card;
 
 class DogProfile extends React.Component {
-  state = {};
+  state = { contactVisible: false, infoVisible: false };
+
+  showContactModal = () => {
+    this.setState({
+      contactVisible: true,
+    });
+  };
+
+  showInfoModal = () => {
+    this.setState({
+      infoVisible: true,
+    });
+  };
+
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      contactVisible: false,
+      infoVisible: false
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      contactVisible: false,
+      infoVisible: false
+    });
+  };
 
   render() {
     const { pet, generalbreeddata } = this.props.location.state;
-    const { images, name, description, breeds, attributes, contact, age } = pet;
-    console.log(pet, generalbreeddata);
+    const { images, name, description, breeds, attributes, contact, age, listingLink } = pet;
+    const subject = `Is ${name} available to adopt?`
+    const body = `Hello! \n I am interested in possibly adopting ${name}, your available ${breeds.primary} listed on Petfinder. \n Do you have any more information about next steps? \n Thank you!`
+
+    console.log(pet)
 
     return (
       <div>
@@ -38,7 +68,7 @@ class DogProfile extends React.Component {
               <p><b>Breed:</b> {breeds.primary} </p>
 
 
-            <div style={{ marginTop: "5%" }}>
+            <div style={{ marginTop: "5%", display: "flex" }}>
               {attributes.spayed_neutered ? (
                 <div> 
                   <Popover placement="topLeft" content={<p>Spayed/Neutered</p>} arrowPointAtCenter>
@@ -86,7 +116,26 @@ class DogProfile extends React.Component {
 
         </div>
 
-        <CostTabs />
+        <CostTabs props={generalbreeddata} age={age} />
+
+        <div style={{ marginTop: "3%"}}>          
+
+          <Button onClick={this.showContactModal} type="primary">Learn More About {name}</Button>
+
+          <Modal
+            visible={this.state.contactVisible}
+            onOk={this.handleOk}
+            footer={[
+              <Button key="Close" type="primary" onClick={this.handleCancel}>
+                Close
+              </Button>
+            ]}
+            >
+            <Button href={`${listingLink}`} target="_blank">See PetFinder Listing</Button>
+            <Button type="ghost" href={`mailto:${contact.email}?subject=${subject}&body=${body}`} target="_blank">Email Shelter</Button>
+          </Modal>
+        </div>
+
       </div>
     );
   }
