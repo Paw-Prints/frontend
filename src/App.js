@@ -13,10 +13,9 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/home" component={HomePage} />
+          <Route path="/" component={HomePage} />
           <Route path="/display/:dogid" component={DogProfile}/>
           <Route path="/display" component={DisplaySearch} />
-          <Route path="/" component={NavBar} />
           
         </Switch>
       </Router>
