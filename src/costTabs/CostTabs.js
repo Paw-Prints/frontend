@@ -4,7 +4,7 @@ import { Tabs, Switch, Icon } from 'antd';
 const { TabPane } = Tabs;
 
 
-export default class HomePage extends Component {
+export default class CostTabs extends Component {
     constructor(props){
         super();
         this.state = {
