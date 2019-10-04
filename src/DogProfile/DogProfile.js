@@ -144,12 +144,12 @@ const CardText = styled.div`
 
 const ButtonBox = styled.div`
   display: flex;
-  margin-top: 3%;
   justify-items: center;
-  margin-bottom: 4%;
   width: 50%;
   margin: auto;
   justify-content: space-evenly;
+  margin-bottom: 3%;
+  margin-top: 4%;
 
   @media (max-width: 780px) {
     flex-direction: column;
