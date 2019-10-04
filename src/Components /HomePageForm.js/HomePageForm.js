@@ -55,6 +55,9 @@ export default class HomePageForm extends Component {
                                 style={{marginBottom: "4%", width: "40%"}}
                             />
                             <button>Submit</button>
+                            <h4 style={{marginTop: "5%", marginBottom: "-5%"}}><a href="https://www.pedigree.com/getting-a-new-dog/breed-match">
+                                Find the perfect dog breed with this quiz!
+                            </a></h4>
                         </form>
                     </div>
                 </AppStyles>
@@ -113,15 +116,15 @@ const AppStyles = styled.div`
         }
     }
     input,select {
-        width: 70%;
-        font-size: 1.3rem;
+        width: 50%;
+        font-size: 1.1rem;
         font-weight: 400;
         line-height: 1.5;
         color: #777777;
         margin: 10px 0px;
         padding-left: 20px;
         box-sizing: border-box;
-        height: 50px;
+        height: 44px;
         border: 1px solid #e0e0e0;
         border-bottom: none;
         background-color: #fff;
@@ -135,14 +138,15 @@ const AppStyles = styled.div`
         border: 1px solid #E04E00;
         color: #E04E00;
         border-radius: 5px;
-        padding: 10px 25px;
-        font-size: 1.3rem;
+        padding: 6px 25px;
+        font-size: 1.1rem;
         
     }
     button:hover{
-        color : #1a5e9e;
+        color : #FFFFFF;
+        font-weight: bold;
         background-color: #E04E00; 
-        transition-duration: 1.2s
+        transition-duration: 0.5s
     }
     h2{
         margin: 5px;
@@ -155,6 +159,13 @@ const AppStyles = styled.div`
         flex-wrap: wrap;
     }
     .city > input, .city > select{
-        width: 45%;
+        width: 40%;
+    }
+    a{
+        color: #4b7194;
+    }
+    a:hover{
+        color : #144a7d;
+        transition-duration: 0.2s
     }
 `;
