@@ -8,6 +8,7 @@ import specialNeeds from "../Images/Attributes/special_need_color.png";
 import styled from 'styled-components';
 import { Popover, Button } from 'antd';
 import CostTabs from '../costTabs/CostTabs';
+import { Link } from "react-router-dom";
 
 
 class DogProfile extends React.Component {
@@ -39,6 +40,11 @@ class DogProfile extends React.Component {
     });
   };
 
+  goBack = (e) => {
+    e.preventDefault();
+    this.props.history.goBack();
+}
+
   render() {
     const { pet, generalbreeddata } = this.props.location.state;
     const { images, name, description, breeds, attributes, contact, age, listingLink } = pet;
@@ -49,6 +55,11 @@ class DogProfile extends React.Component {
 
     return (
       <div>
+
+        <BackButton>
+          <Button onClick={this.goBack} type="ghost">Back</Button>
+        </BackButton>
+
         <Header />
 
         <div
@@ -157,7 +168,13 @@ const ButtonBox = styled.div`
     align-items: center;
     height: 20vh;
     min-width: 400px;
-}
+}`;
+
+const BackButton = styled.div`
+  position: absolute;
+  z-index: 6;
+  margin-left: 3%;
+  margin-top: 2%;
 `;
 
 export default DogProfile;

@@ -118,7 +118,8 @@ export default class DisplaySearch extends Component {
                             pathname: `/display/${item.name}`,
                             state: {
                               generalbreeddata: this.state.generalbreeddata,
-                              pet: item
+                              pet: item,
+                              pets: this.state.pets
                             }
                           }}
                         >
