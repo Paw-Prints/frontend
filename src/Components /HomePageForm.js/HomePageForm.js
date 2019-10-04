@@ -88,7 +88,7 @@ const AppStyles = styled.div`
         width:  500px;
         height:100%;
         box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
-        margin: 0 auto 60px auto;
+        margin: 4% auto 60px auto;
     }
     form{
         display: flex;

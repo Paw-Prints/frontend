@@ -24,8 +24,7 @@ export default class DisplaySearch extends Component {
         }
     }
     componentDidMount() {
-        // console.log("??????????", this.props.location.state.responseObj);
-
+        console.log(this.props)
         const generalbreeddata = ((this.props.location.state||{}).responseObj||{}).costs
         const listingLink = (((this.props.location.state||{}).responseObj||{}).pets||[]).map(pet => {
             return (pet.listingLink)

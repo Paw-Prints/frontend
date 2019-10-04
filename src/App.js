@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-// import "antd/dist/antd.css"
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import HomePage from './HomePage/HomePage';
 import DisplaySearch from './DisplaySearch/DisplaySearch';
@@ -12,10 +11,9 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/" component={HomePage} />
           <Route exact path="/display/:dogid" component={DogProfile}/>
           <Route exact path="/display" component={DisplaySearch} />
-          
+          <Route path="/" component={HomePage} />
         </Switch>
       </Router>
     </div>
