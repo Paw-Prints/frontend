@@ -6,7 +6,7 @@ import vaccinated from "../Images/Attributes/vaccination-color.png";
 import neutered from "../Images/Attributes/neutered.png";
 import specialNeeds from "../Images/Attributes/special_need_color.png";
 import styled from 'styled-components';
-import { Popover, Modal, Button, Icon } from 'antd';
+import { Popover, Button } from 'antd';
 import CostTabs from '../costTabs/CostTabs';
 
 
@@ -26,7 +26,6 @@ class DogProfile extends React.Component {
   };
 
   handleOk = e => {
-    console.log(e);
     this.setState({
       contactVisible: false,
       infoVisible: false
@@ -34,7 +33,6 @@ class DogProfile extends React.Component {
   };
 
   handleCancel = e => {
-    console.log(e);
     this.setState({
       contactVisible: false,
       infoVisible: false
@@ -118,23 +116,12 @@ class DogProfile extends React.Component {
 
         <CostTabs props={generalbreeddata} age={age} />
 
-        <div style={{ marginTop: "3%"}}>          
-
-          <Button onClick={this.showContactModal} type="primary">Learn More About {name}</Button>
-
-          <Modal
-            visible={this.state.contactVisible}
-            onOk={this.handleOk}
-            footer={[
-              <Button key="Close" type="primary" onClick={this.handleCancel}>
-                Close
-              </Button>
-            ]}
-            >
-            <Button href={`${listingLink}`} target="_blank">See PetFinder Listing</Button>
-            <Button type="ghost" href={`mailto:${contact.email}?subject=${subject}&body=${body}`} target="_blank">Email Shelter</Button>
-          </Modal>
-        </div>
+        <ButtonBox>          
+          <Button href={`${listingLink}`} target="_blank">See {name}'s PetFinder Listing</Button>
+          <Button type="primary" href={`mailto:${contact.email}?subject=${subject}&body=${body}`} target="_blank">
+            Email Shelter to Adopt
+          </Button>
+        </ButtonBox>
 
       </div>
     );
@@ -153,6 +140,24 @@ const CardText = styled.div`
   flex-direction: column;
   align-items: baseline;
   width: 50%;
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  margin-top: 3%;
+  justify-items: center;
+  margin-bottom: 4%;
+  width: 50%;
+  margin: auto;
+  justify-content: space-evenly;
+
+  @media (max-width: 780px) {
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+    height: 20vh;
+    min-width: 400px;
+}
 `;
 
 export default DogProfile;

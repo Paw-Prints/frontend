@@ -45,7 +45,6 @@ export default class CostTabs extends Component {
       };
     
       handleOk = e => {
-        console.log(e);
         this.setState({
           contactVisible: false,
           infoVisible: false
@@ -53,7 +52,6 @@ export default class CostTabs extends Component {
       };
     
       handleCancel = e => {
-        console.log(e);
         this.setState({
           contactVisible: false,
           infoVisible: false
@@ -195,7 +193,7 @@ export default class CostTabs extends Component {
 
                 <p><b>Medical:</b> {lifetimeMedical}</p>
 
-                <p><b>Breed Health:</b> {healthIssues}</p>
+                <p style={{ marginBottom: "20px" }}><b>Breed Health:</b> {healthIssues}</p>
                 
             </TabPane>
         </Tabs>)
