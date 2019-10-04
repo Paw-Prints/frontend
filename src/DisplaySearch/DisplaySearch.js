@@ -110,7 +110,11 @@ export default class DisplaySearch extends Component {
                       }
                       description={item.description}
                     />
-                    {<a href={item.content}>{item.name}'s listingLink </a>}
+                    {
+                      <a href={item.content}>
+                        {item.name.split(" ")[0]}'s listingLink{" "}
+                      </a>
+                    }
                     {
                       <p>
                         <Link
