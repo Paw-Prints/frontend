@@ -6,7 +6,7 @@ import vaccinated from "../Images/Attributes/vaccination-color.png";
 import neutered from "../Images/Attributes/neutered.png";
 import specialNeeds from "../Images/Attributes/special_need_color.png";
 import styled from 'styled-components';
-import { Popover, Button } from 'antd';
+import { Popover, Button, Row, Col } from 'antd';
 import CostTabs from '../costTabs/CostTabs';
 
 
@@ -40,6 +40,7 @@ class DogProfile extends React.Component {
   };
 
   goBack = (e) => {
+    console.log(e)
     e.preventDefault();
     this.props.history.goBack();
 }
@@ -55,18 +56,25 @@ class DogProfile extends React.Component {
     return (
       <div>
 
-        <BackButton>
-          <Button onClick={this.goBack} type="ghost">Back</Button>
-        </BackButton>
+      <Header />
+      
 
-        <Header />
 
+        <Row type="flex" >
+          <Col style={{marginTop: "80px", marginLeft: "3%"}}>
+
+          <Button onClick={this.goBack} type="default">Back</Button>
+
+          </Col>
+
+        
+        <Col >
         <div
-          style={{ margin: "auto", width: "70%", minWidth: "400px", display: "flex", marginTop: "60px", maxHeight: "50vh", justifyContent: "center", paddingTop: "5%", marginBottom: "6%" }}
+          style={{ margin: "auto", width: "70%", minWidth: "400px", display: "flex", marginTop: "40px", maxHeight: "50vh", justifyContent: "center", paddingTop: "5%", marginBottom: "6%" }}
         >
 
           <PetCard>
-            <img src={images[0].medium} alt="dog" style={{ height: "30vh", width: "auto"}} />
+            <img src={images[0].medium} alt="dog" style={{ height: "30vh", width: "auto", marginRight: "15px"}} />
 
             <CardText style={{marginTop: "-2%"}}>
               <h1>{name}</h1>
@@ -122,7 +130,9 @@ class DogProfile extends React.Component {
 
           </PetCard>
 
-        </div>
+          </div>
+        </Col>
+        </Row>
 
         <CostTabs props={generalbreeddata} age={age} />
 
