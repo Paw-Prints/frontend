@@ -46,76 +46,126 @@ export default class HomePage extends Component {
 
             annualTotal = costs.annual.total.without
             annualMedical = costs.annual.medical.without
-            
+
             lifetimeTotal = costs.lifetime[this.state.age].total.without
             lifetimeMedical = costs.lifetime[this.state.age].medical.without
 
         }
 
         return (
-        <Tabs defaultActiveKey="1" onChange={this.tabChange}>
-            <TabPane tab="Tab 1" key="1">
-                <h4>{monthlyTotal} monthly costs:</h4>
+        <Tabs defaultActiveKey="1" onChange={this.tabChange} style={{maxWidth: "70%", minWidth: "400px", margin: "auto"}}>
+            <TabPane tab="Monthly" key="1">
+                <h2>{monthlyTotal} monthly costs:</h2>
                 <br />
 
-                <p><b>Food:</b> {costs.monthly.food}</p>
-                <p><b>Grooming:</b> {costs.monthly.grooming}</p>
+                <InsuranceSwitchDiv>
+                    <p><b>Will you have pet insurance?</b></p>
+                    <Switch
+                        checkedChildren={<Icon type="check" />}
+                        unCheckedChildren={<Icon type="close" />}
+                        defaultChecked
+                        onChange={this.withInsurance}
+                    />
+                </InsuranceSwitchDiv>
 
+                <CostTraitsDiv>
+                    <p><b>Food:</b> {costs.monthly.food}</p>
+                    <p><b>Grooming:</b> {costs.monthly.grooming}</p>
+                </CostTraitsDiv>
 
-                <p><b>Will you have pet insurance?</b></p>
-                <Switch
-                    checkedChildren={<Icon type="check" />}
-                    unCheckedChildren={<Icon type="close" />}
-                    defaultChecked
-                    onChange={this.withInsurance}
-                />
+                <CostTraitsDiv>
+                    <p><b>Medical:</b> {monthlyMedical}</p>
+                    <p><b>Toys and Treats:</b> {costs.monthly.toysTreats} </p>
+                </CostTraitsDiv>
 
-                <p><b>Medical:</b> {monthlyMedical}</p>
-                <p><b>Toys and Treats:</b> {costs.monthly.toysTreats} </p>
             </TabPane>
 
-            <TabPane tab="Tab 2" key="2">
-                <h4>{annualTotal} annual costs:</h4>
+            <TabPane tab="Annual" key="2">
+                <h2>{annualTotal} annual costs:</h2>
                 <br />
 
-                <p><b>Food:</b> {costs.annual.food}</p>
-                <p><b>Grooming:</b> {costs.annual.grooming}</p>
+                <InsuranceSwitchDiv>
+                    <p><b>Will you have pet insurance?</b></p>
+                    <Switch
+                        checkedChildren={<Icon type="check" />}
+                        unCheckedChildren={<Icon type="close" />}
+                        defaultChecked
+                        onChange={this.withInsurance}
+                    />
+                </InsuranceSwitchDiv>
 
+                <CostTraitsDiv>
+                    <p><b>Food:</b> {costs.annual.food}</p>
+                    <p><b>Grooming:</b> {costs.annual.grooming}</p>
+                </CostTraitsDiv>
 
-                <p><b>Will you have pet insurance?</b></p>
-                <Switch
-                    checkedChildren={<Icon type="check" />}
-                    unCheckedChildren={<Icon type="close" />}
-                    defaultChecked
-                    onChange={this.withInsurance}
-                />
+                <CostTraitsDiv>
+                    <p><b>Medical:</b> {annualMedical}</p>
+                    <p><b>Toys and Treats:</b> {costs.annual.toysTreats} </p>
+                </CostTraitsDiv>
 
-                <p><b>Medical:</b> {annualMedical}</p>
-                <p><b>Toys and Treats:</b> {costs.annual.toysTreats} </p>
             </TabPane>
 
-            <TabPane tab="Tab 3" key="3">
-                <h4>{lifetimeTotal} lifetime costs:</h4>
+            <TabPane tab="Lifetime" key="3">
+                <h2>{lifetimeTotal} lifetime costs:</h2>
                 <br />
 
-                <p><b>Food:</b> {costs.lifetime[this.state.age].food}</p>
-                <p><b>Grooming:</b> {costs.lifetime[this.state.age].grooming}</p>
+                <InsuranceSwitchDiv>
+                    <p><b>Will you have pet insurance?</b></p>
+                    <Switch
+                        checkedChildren={<Icon type="check" />}
+                        unCheckedChildren={<Icon type="close" />}
+                        defaultChecked
+                        onChange={this.withInsurance}
+                    />
+                </InsuranceSwitchDiv>
 
+                <CostTraitsLifetimeDiv>
+                    <p><b>Food:</b> {costs.lifetime[this.state.age].food}</p>
+                    <p><b>Grooming:</b> {costs.lifetime[this.state.age].grooming}</p>
+                </CostTraitsLifetimeDiv>
 
-                <p><b>Will you have pet insurance?</b></p>
-                <Switch
-                    checkedChildren={<Icon type="check" />}
-                    unCheckedChildren={<Icon type="close" />}
-                    defaultChecked
-                    onChange={this.withInsurance}
-                />
+                <CostTraitsDiv>
+                    <p><b>Toys and Treats:</b> {costs.lifetime[this.state.age].toysTreats} </p>
+                    <p><b>Miscellaneous:</b> {costs.lifetime[this.state.age].miscellaneous} </p>
+                </CostTraitsDiv>
 
                 <p><b>Medical:</b> {lifetimeMedical}</p>
-                <p><b>Toys and Treats:</b> {costs.lifetime[this.state.age].toysTreats} </p>
+
+                <p><b>Breed Health:</b> {costs.healthIssues}</p>
+                
             </TabPane>
         </Tabs>)
     }
-}
+};
+
+
+const CostTraitsDiv = styled.div`
+    display: flex;
+    justify-content: space-around;
+`;
+
+const CostTraitsLifetimeDiv = styled.div`
+    display: flex;
+    justify-content: space-around;
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+    }
+`;
+
+const InsuranceSwitchDiv = styled.div`
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    width: 60%;
+    margin-bottom: 5%;
+
+    @media (max-width: 780px) {
+        width: 80%;
+    }
+
+`;
 
 const costs = {
     "monthly": {
