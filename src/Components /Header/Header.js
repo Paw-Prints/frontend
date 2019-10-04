@@ -6,7 +6,7 @@ export default class Header extends Component {
     render() {
         return (
             <HeaderStyles className='headers'>
-                <p>Paw Print <span><img className='pawHeader' src = {`${headerImage}`}/></span></p>
+                <h1>Paw Print </h1>
             </HeaderStyles>
         )
     }
@@ -20,6 +20,10 @@ const HeaderStyles = styled.div`
     position: fixed;
     top: 0px;
     left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1%;
     .pawHeader{
         height: 35px;
     }

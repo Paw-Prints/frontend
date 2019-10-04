@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Spin, Alert } from 'antd';
 import HomePageForm from '../Components /HomePageForm.js/HomePageForm';
-// var request = require("request");
 var axios = require("axios");
-// const serverurl=`http://localhost:3001`
 
 export default class HomePage extends Component {
     constructor(props) {
@@ -12,13 +11,11 @@ export default class HomePage extends Component {
             location :  '',
             city: '',
             state: '',
-            responseObj:{}
+            responseObj:{},
+            loading: false
         }
     }
 
-    componentDidMount() {
-        
-    }
     handleChange =(e) =>{
         const { target: { name, value } } = e;
         this.setState({ [name]: value })
@@ -44,21 +41,27 @@ export default class HomePage extends Component {
             body = {
                 breed: this.state.breed,
                  location: `${this.state.city + ', ' + this.state.state}`}
-        }
+        };
+
+        this.setState({ loading: true });
 
         axios.post('https://paw-prints.herokuapp.com/api/', body
         ).then(res=>{
+
                 console.log(res)
                 this.props.history.push({
                       pathname: '/display',
                       state: { responseObj: res.data }
                     })
             })
-            .catch(err=> { throw Error })
+            .catch(err=> { console.error(err.data) })
     }
     render() {
-        return (
-            <div>
+        let content
+        if(this.state.loading){
+            content = (<Spin tip="Loading..." size="large" />)
+        } else {
+            content = (<div>
                 <HomePageForm 
                     breed = { this.state.breed }
                     city = {this.state.city}
@@ -68,7 +71,10 @@ export default class HomePage extends Component {
                     handleSubmit = { this.handleSubmit }
                     handleCityState = {this.handleCityState }
                 />
-            </div>
+            </div>)
+        }
+        return (
+            content
         )
     }
 }
