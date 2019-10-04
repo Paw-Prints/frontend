@@ -1,0 +1,5 @@
+[build]
+
+base = "src/"
+publish = "src/build"
+command = "yarn run build"

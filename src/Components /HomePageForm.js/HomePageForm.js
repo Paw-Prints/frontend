@@ -3,11 +3,8 @@ import styled from 'styled-components';
 import Header from '../Header/Header';
 import StateOptions from './StateOptions'
 import logo from './../../Images/Logo_Headers/dog_300x300.png'
-export default class HomePageForm extends Component {
-    constructor (){
-        super();
-    }
 
+export default class HomePageForm extends Component {
     render() {
         return (
             <div>
@@ -148,4 +145,4 @@ const AppStyles = styled.div`
     .city > input, .city > select{
         width: 45%;
     }
-    `;
+`;
