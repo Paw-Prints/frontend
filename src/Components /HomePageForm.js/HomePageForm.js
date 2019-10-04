@@ -13,9 +13,10 @@ export default class HomePageForm extends Component {
                     <div className='formFields'>
                         <img src={`${logo}`} alt='Paw logo'/>
                         <div className='header'>
-                                <h3>Short Snappy Decision <br /> To Be Made...</h3>
+                                <h3 style={{ marginTop: "-5%"}}>Find nearby adoptable dogs, <br /> see an estimated lifetime budget.</h3>
                         </div >
                         <form onSubmit = {this.props.handleSubmit}>
+                            <h2>I want a</h2>
                             <select 
                                 name='breed'
                                 value ={this.props.breed} 
@@ -32,6 +33,7 @@ export default class HomePageForm extends Component {
                                 <option value="Yorkshire Terrier">Yorkshire Terrier</option>
                                 <option value="Pembroke Welsh Corgi">Pembroke Welsh Corgi</option>
                             </select>
+                            <h2 style={{ marginTop: "2%"}}>I'm looking to adopt in</h2>
                             <div className="city">
                                 <input 
                                     type="text" 
@@ -43,13 +45,14 @@ export default class HomePageForm extends Component {
                                         handleCityState = {this.props.handleCityState}
                                     />
                             </div>
-                            <h3>Or</h3>
+                            <h2>Or</h2>
                             <input 
                                 type="text"
                                 name = 'location'  
                                 placeholder = 'Zip Code'
                                 value = {this.props.location}
                                 onChange = { this.props.handleChange }
+                                style={{marginBottom: "4%", width: "40%"}}
                             />
                             <button>Submit</button>
                         </form>
@@ -64,10 +67,19 @@ export default class HomePageForm extends Component {
 const AppStyles = styled.div`
     width: 100%;
     display: flex;
-    margin-top: 65px;
+    margin-top: 60px;
     height: 80%;
     align-content: center;
     align-items: center;
+
+    @media (min-width: 800px) {
+        margin-top: 4%;
+    }
+
+    @media (min-width: 1200px) {
+        margin-top: 2%;
+    }
+
     h1, h3, button, input, option, select {
         font-family: 'Blinker', sans-serif;
 
@@ -76,7 +88,7 @@ const AppStyles = styled.div`
         height: 100px;
     }
     .header{
-        padding: 30px;
+        padding-top: 30px;
     }
    .header > h3{
     color : #1a5e9e;
@@ -132,7 +144,7 @@ const AppStyles = styled.div`
         background-color: #E04E00; 
         transition-duration: 1.2s
     }
-    h3{
+    h2{
         margin: 5px;
         color: #1a5e9e;
     }
