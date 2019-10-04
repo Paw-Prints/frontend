@@ -13,9 +13,10 @@ export default class HomePageForm extends Component {
                     <div className='formFields'>
                         <img src={`${logo}`} alt='Paw logo'/>
                         <div className='header'>
-                                <h3>Short Snappy Decision <br /> To Be Made...</h3>
+                                <h3 style={{ marginTop: "-5%"}}>Find nearby adoptable dogs, <br /> see an estimated lifetime budget.</h3>
                         </div >
                         <form onSubmit = {this.props.handleSubmit}>
+                            <h2>I want a</h2>
                             <select 
                                 name='breed'
                                 value ={this.props.breed} 
@@ -32,6 +33,7 @@ export default class HomePageForm extends Component {
                                 <option value="Yorkshire Terrier">Yorkshire Terrier</option>
                                 <option value="Pembroke Welsh Corgi">Pembroke Welsh Corgi</option>
                             </select>
+                            <h2 style={{ marginTop: "2%"}}>I'm looking to adopt in</h2>
                             <div className="city">
                                 <input 
                                     type="text" 
@@ -43,15 +45,19 @@ export default class HomePageForm extends Component {
                                         handleCityState = {this.props.handleCityState}
                                     />
                             </div>
-                            <h3>Or</h3>
+                            <h2>Or</h2>
                             <input 
                                 type="text"
                                 name = 'location'  
                                 placeholder = 'Zip Code'
                                 value = {this.props.location}
                                 onChange = { this.props.handleChange }
+                                style={{marginBottom: "4%", width: "40%"}}
                             />
                             <button>Submit</button>
+                            <h4 style={{marginTop: "5%", marginBottom: "-5%"}}><a href="https://www.pedigree.com/getting-a-new-dog/breed-match">
+                                Find the perfect dog breed with this quiz!
+                            </a></h4>
                         </form>
                     </div>
                 </AppStyles>
@@ -64,10 +70,19 @@ export default class HomePageForm extends Component {
 const AppStyles = styled.div`
     width: 100%;
     display: flex;
-    margin-top: 65px;
+    margin-top: 60px;
     height: 80%;
     align-content: center;
     align-items: center;
+
+    @media (min-width: 800px) {
+        margin-top: 4%;
+    }
+
+    @media (min-width: 1200px) {
+        margin-top: 2%;
+    }
+
     h1, h3, button, input, option, select {
         font-family: 'Blinker', sans-serif;
 
@@ -76,7 +91,7 @@ const AppStyles = styled.div`
         height: 100px;
     }
     .header{
-        padding: 30px;
+        padding-top: 30px;
     }
    .header > h3{
     color : #1a5e9e;
@@ -88,7 +103,7 @@ const AppStyles = styled.div`
         width:  500px;
         height:100%;
         box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
-        margin: 0 auto 60px auto;
+        margin: 4% auto 60px auto;
     }
     form{
         display: flex;
@@ -101,15 +116,15 @@ const AppStyles = styled.div`
         }
     }
     input,select {
-        width: 70%;
-        font-size: 1.3rem;
+        width: 50%;
+        font-size: 1.1rem;
         font-weight: 400;
         line-height: 1.5;
         color: #777777;
         margin: 10px 0px;
         padding-left: 20px;
         box-sizing: border-box;
-        height: 50px;
+        height: 44px;
         border: 1px solid #e0e0e0;
         border-bottom: none;
         background-color: #fff;
@@ -123,16 +138,17 @@ const AppStyles = styled.div`
         border: 1px solid #E04E00;
         color: #E04E00;
         border-radius: 5px;
-        padding: 10px 25px;
-        font-size: 1.3rem;
+        padding: 6px 25px;
+        font-size: 1.1rem;
         
     }
     button:hover{
-        color : #1a5e9e;
+        color : #FFFFFF;
+        font-weight: bold;
         background-color: #E04E00; 
-        transition-duration: 1.2s
+        transition-duration: 0.5s
     }
-    h3{
+    h2{
         margin: 5px;
         color: #1a5e9e;
     }
@@ -143,6 +159,13 @@ const AppStyles = styled.div`
         flex-wrap: wrap;
     }
     .city > input, .city > select{
-        width: 45%;
+        width: 40%;
+    }
+    a{
+        color: #4b7194;
+    }
+    a:hover{
+        color : #144a7d;
+        transition-duration: 0.2s
     }
 `;
