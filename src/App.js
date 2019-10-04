@@ -4,7 +4,6 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import HomePage from './HomePage/HomePage';
 import DisplaySearch from './DisplaySearch/DisplaySearch';
 import DogProfile from './DogProfile/DogProfile';
-import CostTabs from './costTabs/CostTabs';
 
 function App() {
 
@@ -12,7 +11,6 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/test" component={CostTabs} />
           <Route exact path="/display/:dogid" component={DogProfile}/>
           <Route exact path="/display" component={DisplaySearch} />
           <Route path="/" component={HomePage} />
