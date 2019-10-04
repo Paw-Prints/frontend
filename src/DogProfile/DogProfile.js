@@ -8,7 +8,6 @@ import specialNeeds from "../Images/Attributes/special_need_color.png";
 import styled from 'styled-components';
 import { Popover, Button } from 'antd';
 import CostTabs from '../costTabs/CostTabs';
-import { Link } from "react-router-dom";
 
 
 class DogProfile extends React.Component {
