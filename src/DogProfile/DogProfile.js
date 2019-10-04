@@ -57,8 +57,6 @@ class DogProfile extends React.Component {
       <div>
 
       <Header />
-      
-
 
         <Row type="flex" >
           <Col style={{marginTop: "80px", marginLeft: "3%"}}>
