@@ -14,7 +14,8 @@ export default class HomePage extends Component {
             city: '',
             state: '',
             responseObj:{},
-            loading: false
+            loading: false,
+            error: false
         }
     }
 
@@ -30,6 +31,11 @@ export default class HomePage extends Component {
         e.preventDefault()
         this.setState({ state: e.target.value })
     }
+    onClose = e => {
+        this.setState({
+            error: false
+        });
+    };
     handleSubmit = e =>{
         e.preventDefault();
         let body = {}
@@ -48,18 +54,31 @@ export default class HomePage extends Component {
         this.setState({ loading: true });
 
         axios.post('https://paw-prints.herokuapp.com/api/', body
-        ).then(res=>{
-
-                console.log(res)
+        ).then( res => {
                 this.props.history.push({
                       pathname: '/display',
                       state: { responseObj: res.data }
                     })
             })
-            .catch(err=> { console.error(err.data) })
+            .catch( err => { 
+                this.setState({ loading: false, error: true }) 
+            })
     }
     render() {
         let content
+        let alert
+        if(this.state.error){
+            alert = <Alert
+                    message="Invalid City or Zip Code"
+                    description="That city or zip code was not found. Please double check and try again!"
+                    type="error"
+                    style={{ width: "50%", margin: "auto", marginTop: "6%", marginBottom: "-5%" }}
+                    closable
+                    onClose={this.onClose}
+            />
+        } else {
+            alert = null;
+        }
         if(this.state.loading){
             content = (<div>
                 <Header />
@@ -69,6 +88,8 @@ export default class HomePage extends Component {
             </div>)
         } else {
             content = (<div>
+                <Header />
+                {alert}
                 <HomePageForm 
                     breed = { this.state.breed }
                     city = {this.state.city}
