@@ -7,8 +7,9 @@ export default class Header extends Component {
   render() {
     return (
       <HeaderStyles className="headers">
+
         <Link style={{ color: "black", textDecoration: "none" }} to="/">
-          <h1>
+          <a href="https://optimistic-brattain-b3415e.netlify.com/"><h1>
             Paw Print{" "}
             <span>
               <img
@@ -18,7 +19,9 @@ export default class Header extends Component {
               />
             </span>
           </h1>
+          </a>
         </Link>
+
       </HeaderStyles>
     );
   }
@@ -40,15 +43,17 @@ const HeaderStyles = styled.div`
   justify-content: center;
   min-width: 400px;
   z-index: 6;
-
+  
   .headers > h1 {
     margin: 0px 0px 0px 0px;
   }
+
   .pawHeader {
     height: 35px;
     padding-left: 10px;
     padding-bottom: 8px;
   }
+
   h1 {
       margin-top: 8%;
   }
