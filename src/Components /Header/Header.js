@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from "styled-components";
-import headerImage from './../../Images/Logo_Headers/dog-paw_orange_50x50.png'
 
 export default class Header extends Component {
     render() {

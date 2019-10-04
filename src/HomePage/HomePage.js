@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Spin, Alert } from 'antd';
+import styled from 'styled-components';
 import HomePageForm from '../Components /HomePageForm.js/HomePageForm';
+import Header from '../Components /Header/Header';
 var axios = require("axios");
 
 export default class HomePage extends Component {
@@ -59,7 +61,12 @@ export default class HomePage extends Component {
     render() {
         let content
         if(this.state.loading){
-            content = (<Spin tip="Loading..." size="large" />)
+            content = (<div>
+                <Header />
+                <SpinnerDiv>
+                    <Spin tip="Loading..." size="large" />
+                </SpinnerDiv>
+            </div>)
         } else {
             content = (<div>
                 <HomePageForm 
@@ -78,3 +85,12 @@ export default class HomePage extends Component {
         )
     }
 }
+
+const SpinnerDiv = styled.div`
+    margin-top: 60px;
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
