@@ -106,7 +106,7 @@ export default class DisplaySearch extends Component {
                 />
                 {
                   <div>
-                    <h2>{item.name}</h2>
+                    <h2>{item.name.split(" ")[0]}</h2>
                     <p>{item.distance.toFixed(2)} miles from you</p>
 
                     <div
