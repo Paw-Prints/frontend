@@ -176,8 +176,8 @@ export default class DisplaySearch extends Component {
                           to={{
                             pathname: `/display/${item.name}`,
                             state: {
-                              generalbreeddata: true,
-                              pets: item
+                              generalbreeddata: this.state.generalbreeddata,
+                              pet: item
                             }
                           }}
                         >
