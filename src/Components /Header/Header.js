@@ -1,23 +1,32 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import headerImage from "./../../Images/Logo_Headers/dog-paw_orange_50x50.png";
+import { Link } from "react-router-dom";
+import headerImage from "./../../Images/Logo_Headers/dog-paw_black_50x50.png";
 
 export default class Header extends Component {
   render() {
     return (
       <HeaderStyles className="headers">
-        <h1>
-          Paw Print{" "}
-          <span>
-            <img alt="paw print" className="pawHeader" src={`${headerImage}`} />
-          </span>
-        </h1>
+        <Link style={{ color: "black", textDecoration: "none" }} to="/">
+          <h1>
+            Paw Print{" "}
+            <span>
+              <img
+                alt="paw print"
+                className="pawHeader"
+                src={`${headerImage}`}
+              />
+            </span>
+          </h1>
+        </Link>
       </HeaderStyles>
     );
   }
 }
 
 const HeaderStyles = styled.div`
+  text-decoration: none;
+  color: black;
   width: 100vw;
   height: 60px;
   background: #e04e00;
