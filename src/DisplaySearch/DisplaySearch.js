@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Layout, Menu, Breadcrumb, Icon, List, Avatar, Card } from 'antd';
 import { Button } from 'antd/lib/radio';
 import NavBar from "../NavBar/NavBar";
+import {Link} from "react-router-dom";
 import { token } from "../token"
 import styled from "styled-components";
 import headerImage from './../Images/Logo_Headers/dog-paw_orange_50x50.png'
@@ -23,25 +24,25 @@ export default class DisplaySearch extends Component {
         }
     }
     componentDidMount() {
-        console.log("??????????", this.props.location.state.responseObj);
+        // console.log("??????????", this.props.location.state.responseObj);
 
-        const generalbreeddata = this.props.location.state.responseObj.costs
-        const listingLink = this.props.location.state.responseObj.pets.map(pet => {
+        const generalbreeddata = ((this.props.location.state||{}).responseObj||{}).costs
+        const listingLink = (((this.props.location.state||{}).responseObj||{}).pets||[]).map(pet => {
             return (pet.listingLink)
         });
-        const description = this.props.location.state.responseObj.pets.map(pet => {
+        const description = (((this.props.location.state||{}).responseObj||{}).pets||[]).map(pet => {
             return (pet.description)
         });
-        const age = this.props.location.state.responseObj.pets.map(pet => {
+        const age = (((this.props.location.state||{}).responseObj||{}).pets||[]).map(pet => {
             return (pet.age)
         });
-        const name = this.props.location.state.responseObj.pets.map(pet => {
+        const name = (((this.props.location.state||{}).responseObj||{}).pets||[]).map(pet => {
             return (pet.name)
         });
-        // const attributes = this.props.location.state.responseObj.pets.map(pet => {
+        // const attributes = (this.props.location.state||{}).responseObj.pets.map(pet => {
         //     return this.state.attributes.push(pet.attributes)
         // });
-        const images = this.props.location.state.responseObj.pets.map(pet => {
+        const images = (((this.props.location.state||{}).responseObj||{}).pets||[]).map(pet => {
             return pet.images[0].medium
         });
         this.setState({
@@ -58,18 +59,12 @@ export default class DisplaySearch extends Component {
     goHome = (e) => {
         this.props.history.push("/home");
     }
-
-    handleClick=(e)=>{
-        console.log("heyyyyy");
-        console.log(e.target.name);
-    }
-    
     render() {
         console.log("blaahhhhhhhhh: ", this.state.images);
         const listData = [];
-        for (let i = 0; i < 23; i++) {
+        for (let i = 0; i < 10; i++) {
             listData.push({
-                href: '#',
+                href: `/display/${this.state.name[i]}`,
                 title: `${this.state.name[i]}, Age: ${this.state.age[i]}`,
                 description: `${this.state.description[i]}`,
                 content: `${this.state.listingLink[i]}`,
@@ -138,10 +133,22 @@ export default class DisplaySearch extends Component {
                                         }
                                     >
                                         <List.Item.Meta
-                                            title={<a onClick={this.handleClick} value={item.name} href={item.href}>{item.title}</a>}
+                                            // title={<a href={item.href}>{item.title}</a>}
                                             description={item.description}
                                         />
                                         {<a href={item.content} >{item.name}'s listingLink </a>}
+                                        {
+                                            <Link 
+                                            to={{ 
+                                            pathname: `/display/${item.name}`, 
+                                            state: { 
+                                                generalbreeddata: this.state.generalbreeddata,
+                                                item: item
+                                            } 
+                                          }}>
+                                          {item.title}
+                                            </Link>
+                                        }
                                     </List.Item>
                                 )}
                             />
