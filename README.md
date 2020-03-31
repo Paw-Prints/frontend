@@ -1,6 +1,6 @@
 # Paw Prints
 
-[Paw Prints](https://optimistic-brattain-b3415e.netlify.com/) is a web application that helps potential dog adopters locate nearby dogs available for adoption and provides an estimated budget required to adopt. 
+[Paw Prints](https://pawprints.netlify.com/) is a web application that helps potential dog adopters locate nearby dogs available for adoption and provides an estimated budget required to adopt. 
 
 The American Humane Association found that [1 in 10 pets is no longer in their adoptive home just six months later](https://news.orvis.com/dogs/pet-adoption-statistics-the-numbers-behind-the-need), with one commonly cited reason for surrender being unexpected cost. 
 
