@@ -5,7 +5,7 @@
   "dependencies": {
     "@mobiscroll/react-lite": "^4.8.1",
     "antd": "^3.23.5",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "dotenv": "^8.1.0",
     "mobiscroll": "^3.0.0-beta6",
     "react": "^16.10.1",
